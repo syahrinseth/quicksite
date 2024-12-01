@@ -78,4 +78,27 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasMany(Article::class);
     }
+
+    public static function getForm()
+    {
+        return [
+                \Filament\Forms\Components\TextInput::make('name')
+                    ->required(),
+                \Filament\Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->required(),
+                \Filament\Forms\Components\DateTimePicker::make('email_verified_at'),
+                \Filament\Forms\Components\TextInput::make('password')
+                    ->password()
+                    ->required(),
+                \Filament\Forms\Components\TextInput::make('current_team_id')
+                    ->numeric(),
+                \Filament\Forms\Components\TextInput::make('profile_photo_path'),
+                \Filament\Forms\Components\Textarea::make('two_factor_secret')
+                    ->columnSpanFull(),
+                    \Filament\Forms\Components\Textarea::make('two_factor_recovery_codes')
+                    ->columnSpanFull(),
+                \Filament\Forms\Components\DateTimePicker::make('two_factor_confirmed_at'),
+        ];
+    }
 }
